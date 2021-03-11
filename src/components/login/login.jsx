@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import styled from "styled-components";
 import {useHistory} from 'react-router-dom';
 
 const Login = ({authService}) => {
@@ -15,7 +16,8 @@ const Login = ({authService}) => {
   const onLogin = (event) => {
     authService
       .login(event.currentTarget.textContent)
-      .then(data => goToMaker(data.user.uid));
+      .then(data => goToMaker(data.user.uid))
+
   }
   
   useEffect(()=>{
@@ -25,7 +27,7 @@ const Login = ({authService}) => {
   });
 
   return (
-    <section>
+    <Section>
       <Header onLogout/>
       <section>
         <h1>Login</h1>
@@ -35,8 +37,20 @@ const Login = ({authService}) => {
         </ul>
       </section>
       <Footer/>
-    </section>
+    </Section>
   )
 }
 
 export default Login;
+
+
+//styled-component
+
+const Section = styled.section`
+  width: 30em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: ${(props) => props.theme.color.makerWhite};
+`;
