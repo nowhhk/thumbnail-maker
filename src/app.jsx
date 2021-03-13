@@ -1,31 +1,29 @@
-import './app.css';
+import "./app.css";
 
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Login from './components/login/login'
-import Maker from './components/maker/maker'
+import Login from "./components/login/login";
+import Maker from "./components/maker/maker";
 import styled from "styled-components";
 
-function App({authService}) {
+function App({ authService }) {
   return (
     <Background>
       <BrowserRouter>
         <Route exact path="/">
-          <Login authService={authService}/>
+          <Login authService={authService} />
         </Route>
         <Route path="/maker">
-          <Maker authService={authService}/>
+          <Maker authService={authService} />
         </Route>
       </BrowserRouter>
     </Background>
-  )
+  );
 }
 
 export default App;
 
-
 //styled-component
-
 
 const Background = styled.div`
   background-color: ${(props) => props.theme.color.makerShadow};
@@ -34,4 +32,4 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;

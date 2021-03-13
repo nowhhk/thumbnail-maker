@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-const Header = ({onLogout}) => (
+const Header = ({ onLogout }) => (
   <HeaderLayout>
-    {onLogout && (<button onClick={onLogout}>Logout</button>)}
+    {onLogout && <button onClick={onLogout}>Logout</button>}
     <h1>Thumbnail Maker</h1>
   </HeaderLayout>
-)
-
+);
 
 export default Header;
 
@@ -18,4 +17,4 @@ const HeaderLayout = styled.header`
   text-align: center;
   padding: 0.5em;
   background-color: ${(props) => props.theme.color.makerGreen};
-`
+`;
