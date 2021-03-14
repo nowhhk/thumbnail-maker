@@ -54,5 +54,5 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: ${(props) => props.theme.color.makerWhite};
+  background-color: ${({ theme }) => theme.color.makerWhite};
 `;

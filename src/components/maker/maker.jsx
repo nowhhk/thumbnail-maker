@@ -1,14 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Editor from "../editor/editor";
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import Preview from "../preview/preview";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import Editor from '../editor/editor';
+import Footer from '../footer/footer';
+import Header from '../header/header';
+import Preview from '../preview/preview';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Maker = ({ authService }) => {
   const history = useHistory();
+
+  const [cards, setCards] = useState([
+    {
+      id: '1',
+      title: 'Hahahahahahahah',
+      subtitle: 'hohohohohohohoo!!',
+      theme: 'border',
+      fileName: 'hi',
+      fileURL: null,
+      fontColor: 'white',
+    },
+    {
+      id: '2',
+      title: 'asdf',
+      subtitle: 'hohohohohohohoo!!',
+      theme: 'border-red',
+      fileName: 'hi',
+      fileURL: null,
+      fontColor: 'white',
+    },
+    {
+      id: '3',
+      title: 'adsfads',
+      subtitle: 'hohohohohohohoo!!',
+      theme: 'border',
+      fileName: 'hi',
+      fileURL: null,
+      fontColor: 'black',
+    },
+  ]);
 
   const onLogout = () => {
     authService.logout();
@@ -17,7 +47,7 @@ const Maker = ({ authService }) => {
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
-        history.push("/");
+        history.push('/');
       }
     });
   });
@@ -26,8 +56,8 @@ const Maker = ({ authService }) => {
     <Section>
       <Header onLogout={onLogout} />
       <Container>
-        <Editor />
-        <Preview />
+        <Editor cards={cards} />
+        <Preview cards={cards} />
       </Container>
       <Footer />
     </Section>
@@ -52,6 +82,5 @@ const Container = styled.div`
   @media only screen and (max-width: ${(props) =>
       props.theme.size.mediaQuery}) {
     flex-direction: column;
-    color: red;
   }
 `;
