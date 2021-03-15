@@ -17,26 +17,31 @@ const Maker = ({ authService }) => {
       subtitle: 'hohohohohohohoo!!',
       theme: 'border',
       fileName: 'hi',
-      fileURL: null,
+      fileURL:
+        'https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=11289037&thumbAt=Y&thumbSe=t_thumb&wrtTy=10006&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNS8wMi9DTFM2OS9OVVJJXzAwMV8wNTIzX251cmltZWRpYV8yMDE1MTIwMw==',
       fontColor: 'white',
+      sub: null,
     },
     {
       id: '2',
-      title: 'asdf',
-      subtitle: 'hohohohohohohoo!!',
+      title: '펭-하',
+      subtitle: '!!',
       theme: 'border-red',
       fileName: 'hi',
-      fileURL: null,
-      fontColor: 'white',
+      fileURL:
+        'http://img.khan.co.kr/news/2019/11/08/l_2019110801001014500075872.jpg',
+      fontColor: 'black',
+      sub: 'sdgsdg',
     },
     {
       id: '3',
       title: 'adsfads',
       subtitle: 'hohohohohohohoo!!',
-      theme: 'border',
+      theme: null,
       fileName: 'hi',
       fileURL: null,
-      fontColor: 'black',
+      fontColor: 'white',
+      sub: 'sdgsdg',
     },
   ]);
 
