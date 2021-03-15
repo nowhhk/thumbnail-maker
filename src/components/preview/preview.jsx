@@ -6,8 +6,8 @@ const Preview = ({ cards }) => (
   <Section>
     <Title>Preview</Title>
     <ul>
-      {cards.map((card) => (
-        <Card card={card} />
+      {Object.keys(cards).map((key) => (
+        <Card key={key} card={cards[key]} />
       ))}
     </ul>
   </Section>

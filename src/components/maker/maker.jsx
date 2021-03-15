@@ -10,8 +10,8 @@ import { useHistory } from 'react-router-dom';
 const Maker = ({ authService }) => {
   const history = useHistory();
 
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: '1',
       title: 'Hahahahahahahah',
       subtitle: 'hohohohohohohoo!!',
@@ -22,7 +22,7 @@ const Maker = ({ authService }) => {
       fontColor: 'white',
       sub: null,
     },
-    {
+    2: {
       id: '2',
       title: '펭-하',
       subtitle: '!!',
@@ -33,17 +33,7 @@ const Maker = ({ authService }) => {
       fontColor: 'black',
       sub: 'sdgsdg',
     },
-    {
-      id: '3',
-      title: 'adsfads',
-      subtitle: 'hohohohohohohoo!!',
-      theme: null,
-      fileName: 'hi',
-      fileURL: null,
-      fontColor: 'white',
-      sub: 'sdgsdg',
-    },
-  ]);
+  });
 
   const onLogout = () => {
     authService.logout();
@@ -57,11 +47,29 @@ const Maker = ({ authService }) => {
     });
   });
 
+  const deleteCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
+  };
+  const updateCard = (card) => {
+    // const updated = { ...cards };
+    // updated[card.id] = card;
+    // setCards(updated);
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+  };
+
   return (
     <Section>
       <Header onLogout={onLogout} />
       <Container>
-        <Editor cards={cards} />
+        <Editor cards={cards} updateCard={updateCard} deleteCard={deleteCard} />
         <Preview cards={cards} />
       </Container>
       <Footer />
