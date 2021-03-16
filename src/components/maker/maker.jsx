@@ -7,33 +7,11 @@ import Preview from '../preview/preview';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-const Maker = ({ FileInput, authService }) => {
+const Maker = ({ FileInput, authService, cardRepository }) => {
   const history = useHistory();
-
-  const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      title: 'Hahahahahahahah',
-      subtitle: 'hohohohohohohoo!!',
-      theme: 'border',
-      fileName: '파일이름',
-      fileURL:
-        'https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=11289037&thumbAt=Y&thumbSe=t_thumb&wrtTy=10006&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNS8wMi9DTFM2OS9OVVJJXzAwMV8wNTIzX251cmltZWRpYV8yMDE1MTIwMw==',
-      fontColor: 'white',
-      sub: null,
-    },
-    2: {
-      id: '2',
-      title: '펭-하',
-      subtitle: '!!',
-      theme: 'border-red',
-      fileName: '파일파일',
-      fileURL:
-        'http://img.khan.co.kr/news/2019/11/08/l_2019110801001014500075872.jpg',
-      fontColor: 'black',
-      sub: 'sdgsdg',
-    },
-  });
+  const historyState = history.state;
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(historyState && historyState.id);
 
   const onLogout = () => {
     authService.logout();
@@ -41,7 +19,9 @@ const Maker = ({ FileInput, authService }) => {
 
   useEffect(() => {
     authService.onAuthChange((user) => {
-      if (!user) {
+      if (user) {
+        setUserId(user.uid);
+      } else {
         history.push('/');
       }
     });
@@ -53,6 +33,7 @@ const Maker = ({ FileInput, authService }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.remove(userId, card);
   };
   const updateCard = (card) => {
     // const updated = { ...cards };
@@ -63,6 +44,7 @@ const Maker = ({ FileInput, authService }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.save(userId, card);
   };
 
   return (
@@ -102,3 +84,28 @@ const Container = styled.div`
     flex-direction: column;
   }
 `;
+
+//Test
+
+// 1: {
+//   id: '1',
+//   title: 'Hahahahahahahah',
+//   subtitle: 'hohohohohohohoo!!',
+//   theme: 'border',
+//   fileName: '파일이름',
+//   fileURL:
+//     'https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=11289037&thumbAt=Y&thumbSe=t_thumb&wrtTy=10006&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNS8wMi9DTFM2OS9OVVJJXzAwMV8wNTIzX251cmltZWRpYV8yMDE1MTIwMw==',
+//   fontColor: 'white',
+//   sub: null,
+// },
+// 2: {
+//   id: '2',
+//   title: '펭-하',
+//   subtitle: '!!',
+//   theme: 'border-red',
+//   fileName: '파일파일',
+//   fileURL:
+//     'http://img.khan.co.kr/news/2019/11/08/l_2019110801001014500075872.jpg',
+//   fontColor: 'black',
+//   sub: 'sdgsdg',
+// },
