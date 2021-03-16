@@ -1,14 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Button from '../button/button';
-import ImageFileInput from '../image_file_input/image_file_input';
 
-const CardAddForm = ({ onAdd }) => {
+const CardAddForm = ({ FileInput, onAdd }) => {
   const formRef = useRef();
   const themeRef = useRef();
   const fontColorRef = useRef();
   const subRef = useRef();
   const titleRef = useRef();
+  const [file, setFile] = useState({
+    fileName: null,
+    fileURL: null,
+  });
+
+  const onFileChange = (file) => {
+    console.log(file);
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -18,10 +29,11 @@ const CardAddForm = ({ onAdd }) => {
       sub: subRef.current.value || '',
       title: titleRef.current.value || '',
       fontColor: fontColorRef.current.value,
-      fileName: '',
-      fileURL: '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
     };
     formRef.current.reset();
+    setFile({ fileName: null, fileURL: null });
     onAdd(card);
   };
 
@@ -38,7 +50,7 @@ const CardAddForm = ({ onAdd }) => {
       </select>
       <textarea ref={subRef} name="sub" placeholder="Sub"></textarea>
       <Button name="Add" onClick={onSubmit}></Button>
-      <ImageFileInput></ImageFileInput>
+      <FileInput name={file.fileName} onFileChange={onFileChange} />
     </form>
   );
 };

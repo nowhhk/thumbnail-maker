@@ -7,7 +7,7 @@ import Preview from '../preview/preview';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-const Maker = ({ authService }) => {
+const Maker = ({ FileInput, authService }) => {
   const history = useHistory();
 
   const [cards, setCards] = useState({
@@ -16,7 +16,7 @@ const Maker = ({ authService }) => {
       title: 'Hahahahahahahah',
       subtitle: 'hohohohohohohoo!!',
       theme: 'border',
-      fileName: 'hi',
+      fileName: '파일이름',
       fileURL:
         'https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=11289037&thumbAt=Y&thumbSe=t_thumb&wrtTy=10006&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNS8wMi9DTFM2OS9OVVJJXzAwMV8wNTIzX251cmltZWRpYV8yMDE1MTIwMw==',
       fontColor: 'white',
@@ -27,7 +27,7 @@ const Maker = ({ authService }) => {
       title: '펭-하',
       subtitle: '!!',
       theme: 'border-red',
-      fileName: 'hi',
+      fileName: '파일파일',
       fileURL:
         'http://img.khan.co.kr/news/2019/11/08/l_2019110801001014500075872.jpg',
       fontColor: 'black',
@@ -69,7 +69,12 @@ const Maker = ({ authService }) => {
     <Section>
       <Header onLogout={onLogout} />
       <Container>
-        <Editor cards={cards} updateCard={updateCard} deleteCard={deleteCard} />
+        <Editor
+          FileInput={FileInput}
+          cards={cards}
+          updateCard={updateCard}
+          deleteCard={deleteCard}
+        />
         <Preview cards={cards} />
       </Container>
       <Footer />

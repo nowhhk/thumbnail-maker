@@ -4,18 +4,19 @@ import CardEditForm from '../card_edit_form/card_edit_form';
 import React from 'react';
 import styled from 'styled-components';
 
-const Editor = ({ cards, updateCard, deleteCard }) => (
+const Editor = ({ FileInput, cards, updateCard, deleteCard }) => (
   <Section>
     <Title>Thumbnail Maker</Title>
     {Object.keys(cards).map((key) => (
       <CardEditForm
         key={key}
+        FileInput={FileInput}
         card={cards[key]}
         updateCard={updateCard}
         deleteCard={deleteCard}
       />
     ))}
-    <CardAddForm onAdd={updateCard} />
+    <CardAddForm FileInput={FileInput} onAdd={updateCard} />
   </Section>
 );
 
