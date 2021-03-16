@@ -26,9 +26,9 @@ export default App;
 //styled-component
 
 const Background = styled.div`
-  background-color: ${(props) => props.theme.color.makerShadow};
+  background-color: ${({ theme }) => theme.color.makerShadow};
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

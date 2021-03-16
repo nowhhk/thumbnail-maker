@@ -24,7 +24,6 @@ export default Editor;
 
 const Section = styled.section`
   flex-basis: 50%;
-  background-color: pink;
 `;
 
 const Title = styled.h1`

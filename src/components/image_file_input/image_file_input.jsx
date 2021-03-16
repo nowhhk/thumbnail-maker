@@ -1,16 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
 const ImageFileInput = ({ uploadService, name, onFileChange }) => {
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef();
   const onButtonClick = (event) => {
     event.preventDefault();
     inputRef.current.click();
   };
   const onChange = async (event) => {
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
+    setLoading(true);
     const uploaded = await uploadService.upload(event.target.files[0]);
+    setLoading(false);
     onFileChange({
       name: uploaded.original_filename,
       url: uploaded.url,
@@ -26,7 +29,10 @@ const ImageFileInput = ({ uploadService, name, onFileChange }) => {
         name="file"
         onChange={onChange}
       />
-      <UploadBtn onClick={onButtonClick}>{name || 'No file'}</UploadBtn>
+      {!loading && (
+        <UploadBtn onClick={onButtonClick}>{name || 'No file'}</UploadBtn>
+      )}
+      {loading && <Loading></Loading>}
     </div>
   );
 };
@@ -37,4 +43,22 @@ const UploadBtn = styled.button``;
 
 const Input = styled.input`
   display: none;
+`;
+
+const Loading = styled.div`
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 3px solid ${({ theme }) => theme.color.makerLightGrey};
+  border-top: 3px solid ${({ theme }) => theme.color.makerPink};
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
