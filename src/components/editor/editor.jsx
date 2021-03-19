@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Editor = ({ FileInput, cards, updateCard, deleteCard }) => (
   <Section>
-    <Title>Thumbnail Maker</Title>
+    {/* <Title>Thumbnail Maker</Title> */}
     {Object.keys(cards).map((key) => (
       <CardEditForm
         key={key}
@@ -24,8 +24,5 @@ export default Editor;
 
 const Section = styled.section`
   flex-basis: 50%;
-`;
-
-const Title = styled.h1`
-  color: ${({ theme }) => theme.color.makerGreen};
+  padding: 1.5em 3em;
 `;

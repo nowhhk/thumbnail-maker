@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import Footer from '../footer/footer';
+import Header from '../header/header';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Login = ({ authService }) => {
   const history = useHistory();
   const goToMaker = (userId) => {
     history.push({
-      pathname: "/maker",
+      pathname: '/maker',
       state: { id: userId },
     });
   };
@@ -53,6 +53,6 @@ const Section = styled.section`
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   background-color: ${({ theme }) => theme.color.makerWhite};
 `;

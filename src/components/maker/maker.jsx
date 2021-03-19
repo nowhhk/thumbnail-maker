@@ -18,6 +18,16 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   };
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    const stopSync = cardRepository.sync(userId, (cards) => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [userId]);
+
+  useEffect(() => {
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid);
@@ -70,9 +80,11 @@ export default Maker;
 
 const Section = styled.section`
   width: 100%;
+  max-width: 1280px;
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.color.makerWhite};
 `;
 
 const Container = styled.div`

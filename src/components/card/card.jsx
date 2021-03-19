@@ -24,7 +24,7 @@ function getStyle(theme) {
     case 'border':
       return 'borderStyle';
     case 'border-red':
-      return 'borderStyle-red';
+      return 'borderStyle red';
     case null:
       return null;
     default:
@@ -49,5 +49,5 @@ const Title = styled.h1`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
-  color: ${(props) => props.fontColor};
+  /* color: ${(props) => props.fontColor}; */
 `;
