@@ -6,13 +6,24 @@ import styled from 'styled-components';
 const DEFAULT_IMAGE = '/image/default.jpg';
 
 const Card = ({ card }) => {
-  const { title, sub, theme, fileName, fileURL, fontColor } = card;
+  const {
+    title,
+    sub,
+    theme,
+    fileName,
+    fileURL,
+    fontColor,
+    fontSize,
+    fontStyle,
+  } = card;
   const url = fileURL || DEFAULT_IMAGE;
 
   return (
     <List url={url} className={`${getStyle(theme)}`}>
       <div>
-        <Title fontColor={fontColor}>{title}</Title>
+        <Title fontColor={fontColor} fontSize={fontSize} fontStyle={fontStyle}>
+          {title}
+        </Title>
         <p>{sub}</p>
       </div>
     </List>
@@ -47,7 +58,11 @@ const Title = styled.h1`
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 100%;
+  /* padding: 0.3em; */
   transform: translate(-50%, -50%);
   z-index: 0;
-  /* color: ${(props) => props.fontColor}; */
+  color: ${(props) => props.fontColor};
+  font-size: ${(props) => props.fontSize};
+  font-family: ${(props) => props.fontStyle};
 `;

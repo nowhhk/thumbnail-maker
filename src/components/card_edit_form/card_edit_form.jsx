@@ -70,8 +70,9 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           value={fontStyle}
           onChange={onChange}
         >
-          <option value="white">저쩌구</option>
-          <option value="black">어쩌구</option>
+          <option value="Nanum Myeongjo">Nanum Myeongjo</option>
+          <option value="Black Han Sans">Black Han Sans</option>
+          <option value="Nanum Pen Script">Nanum Pen Script</option>
         </select>
       </div>
       <div>
@@ -94,8 +95,10 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           value={fontSize}
           onChange={onChange}
         >
-          <option value="white">10</option>
-          <option value="black">20</option>
+          <option value="10px">10</option>
+          <option value="20px">20</option>
+          <option value="30px">30</option>
+          <option value="40px">40</option>
         </select>
       </div>
 
