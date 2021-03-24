@@ -53,7 +53,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
   return (
     <CardForm ref={formRef}>
       <div>
-        <label>타이틀</label>
+        {/* <label>타이틀</label> */}
         <input
           ref={titleRef}
           type="text"
@@ -63,7 +63,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         />
       </div>
       <div>
-        <label>글씨체</label>
+        {/* <label>글씨체</label> */}
         <select
           ref={fontStyleRef}
           name="fontStyle"
@@ -76,7 +76,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         </select>
       </div>
       <div>
-        <label>폰트색</label>
+        {/* <label>폰트색</label> */}
         <select
           ref={fontColorRef}
           name="fontColor"
@@ -88,22 +88,23 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         </select>
       </div>
       <div>
-        <label>사이즈</label>
+        {/* <label>사이즈</label> */}
         <select
           ref={fontSizeRef}
           name="fontSize"
           value={fontSize}
           onChange={onChange}
         >
-          <option value="10px">10</option>
-          <option value="20px">20</option>
           <option value="30px">30</option>
           <option value="40px">40</option>
+          <option value="50px">50</option>
+          <option value="60px">60</option>
+          <option value="70px">70</option>
         </select>
       </div>
 
       <div>
-        <label>테마</label>
+        {/* <label>테마</label> */}
         <select ref={themeRef} name="theme" value={theme} onChange={onChange}>
           <option value="border">border</option>
           <option value="border-red">border-red</option>
@@ -117,8 +118,10 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         value={sub}
         onChange={onChange}
       ></textarea> */}
-      <FileInput name={fileName} onFileChange={onFileChange} />
-      <Button name="Delete" onClick={onSubmit}></Button>
+      <div>
+        <FileInput name={fileName} onFileChange={onFileChange} />
+        <Button name="Delete" onClick={onSubmit}></Button>
+      </div>
     </CardForm>
   );
 };
@@ -128,6 +131,7 @@ export default CardEditForm;
 const CardForm = styled.form`
   display: flex;
   flex-direction: column;
+  /* height: 360px; */
 
   div {
     margin: 0.5em 0;

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const Preview = ({ cards }) => (
   <Section>
-    <Title>Preview</Title>
     <ul>
       {Object.keys(cards).map((key) => (
         <Card key={key} card={cards[key]} />
@@ -18,8 +17,4 @@ export default Preview;
 const Section = styled.section`
   flex-basis: 50%;
   padding: 1.5em 3em;
-`;
-
-const Title = styled.h1`
-  color: ${({ theme }) => theme.color.makerGreen};
 `;

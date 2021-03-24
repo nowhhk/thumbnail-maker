@@ -26,7 +26,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
     const card = {
       id: Date.now(),
       theme: themeRef.current.value,
-      sub: subRef.current.value || '',
+      // sub: subRef.current.value || '',
       title: titleRef.current.value || '',
       fontColor: fontColorRef.current.value,
       fileName: file.fileName || '',
@@ -48,7 +48,6 @@ const CardAddForm = ({ FileInput, onAdd }) => {
         <option value="white">white</option>
         <option value="black">black</option>
       </select>
-      <textarea ref={subRef} name="sub" placeholder="Sub"></textarea>
       <Button name="Add" onClick={onSubmit}></Button>
       <FileInput name={file.fileName} onFileChange={onFileChange} />
     </form>

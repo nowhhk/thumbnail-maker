@@ -30,7 +30,7 @@ const ImageFileInput = ({ uploadService, name, onFileChange }) => {
         onChange={onChange}
       />
       {!loading && (
-        <UploadBtn onClick={onButtonClick}>{name || 'No file'}</UploadBtn>
+        <UploadBtn onClick={onButtonClick}>{name || '이미지 선택'}</UploadBtn>
       )}
       {loading && <Loading></Loading>}
     </div>
@@ -39,7 +39,17 @@ const ImageFileInput = ({ uploadService, name, onFileChange }) => {
 
 export default ImageFileInput;
 
-const UploadBtn = styled.button``;
+const UploadBtn = styled.button`
+  background-color: ${({ theme }) => theme.color.makerGreen};
+  color: ${({ theme }) => theme.color.makerWhite};
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5em;
+  font-size: 0.8rem;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 
 const Input = styled.input`
   display: none;
