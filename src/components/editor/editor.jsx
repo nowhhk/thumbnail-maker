@@ -23,6 +23,6 @@ const Editor = ({ FileInput, cards, updateCard, deleteCard }) => (
 export default Editor;
 
 const Section = styled.section`
-  flex-basis: 50%;
+  flex-basis: 40%;
   padding: 1.5em 3em;
 `;

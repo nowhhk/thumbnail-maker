@@ -15,6 +15,6 @@ const Preview = ({ cards }) => (
 export default Preview;
 
 const Section = styled.section`
-  flex-basis: 50%;
+  flex-basis: 60%;
   padding: 1.5em 3em;
 `;

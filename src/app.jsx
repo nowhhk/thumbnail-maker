@@ -32,7 +32,8 @@ export default App;
 const Background = styled.div`
   background-color: ${({ theme }) => theme.color.makerShadow};
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

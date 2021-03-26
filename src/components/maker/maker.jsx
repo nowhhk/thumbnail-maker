@@ -82,14 +82,18 @@ const Section = styled.section`
   width: 100%;
   max-width: 1280px;
   height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.color.makerWhite};
+  background-color: ${({ theme }) => theme.color.makerLightPink};
+  background-color: #f8dc81;
 `;
 
 const Container = styled.div`
   display: flex;
   flex: 1;
+  overflow: scroll;
+  height: calc(100vh - 8em);
 
   @media only screen and (max-width: ${(props) =>
       props.theme.size.mediaQuery}) {

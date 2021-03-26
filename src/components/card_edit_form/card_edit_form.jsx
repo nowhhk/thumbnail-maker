@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Button from '../button/button';
+import { CompactPicker } from 'react-color';
 import styled from 'styled-components';
 
 const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
@@ -27,6 +28,8 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const heightRef = useRef();
   const fontSizeRef = useRef();
 
+  const [openPicker, setOpenPicker] = useState(false);
+
   const onSubmit = () => {
     deleteCard(card);
   };
@@ -49,67 +52,111 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       fileURL: file.url,
     });
   };
+  const handleChangeComplete = (color) => {
+    updateCard({
+      ...card,
+      fontColor: color.hex,
+    });
+    setOpenPicker(false);
+  };
+
+  const handlePicker = () => {
+    setOpenPicker(!openPicker);
+  };
 
   return (
-    <CardForm ref={formRef}>
-      <div>
-        {/* <label>타이틀</label> */}
+    <CardForm ref={formRef} height={height}>
+      <Label>
         <input
+          className={'size'}
+          ref={widthRef}
+          type="text"
+          name="width"
+          value={width}
+          onChange={onChange}
+        />
+        x
+        <input
+          className={'size'}
+          ref={heightRef}
+          type="text"
+          name="height"
+          value={height}
+          onChange={onChange}
+        />
+      </Label>
+      <Label>
+        <input
+          className={'title'}
           ref={titleRef}
           type="text"
           name="title"
           value={title}
           onChange={onChange}
         />
-      </div>
-      <div>
-        {/* <label>글씨체</label> */}
-        <select
-          ref={fontStyleRef}
-          name="fontStyle"
-          value={fontStyle}
-          onChange={onChange}
-        >
-          <option value="Nanum Myeongjo">Nanum Myeongjo</option>
-          <option value="Black Han Sans">Black Han Sans</option>
-          <option value="Nanum Pen Script">Nanum Pen Script</option>
-        </select>
-      </div>
-      <div>
-        {/* <label>폰트색</label> */}
-        <select
-          ref={fontColorRef}
-          name="fontColor"
-          value={fontColor}
-          onChange={onChange}
-        >
-          <option value="white">white</option>
-          <option value="black">black</option>
-        </select>
-      </div>
-      <div>
-        {/* <label>사이즈</label> */}
-        <select
-          ref={fontSizeRef}
-          name="fontSize"
-          value={fontSize}
-          onChange={onChange}
-        >
-          <option value="30px">30</option>
-          <option value="40px">40</option>
-          <option value="50px">50</option>
-          <option value="60px">60</option>
-          <option value="70px">70</option>
-        </select>
+      </Label>
+      <div className={'font'}>
+        <Label>
+          <select
+            ref={fontStyleRef}
+            name="fontStyle"
+            value={fontStyle}
+            onChange={onChange}
+            className={'select'}
+          >
+            <option value="Nanum Myeongjo">Nanum Myeongjo</option>
+            <option value="Black Han Sans">Black Han Sans</option>
+            <option value="Nanum Pen Script">Nanum Pen Script</option>
+          </select>
+        </Label>
+        <Label>
+          <Pallete
+            className={'select'}
+            fontColor={fontColor}
+            onClick={handlePicker}
+          >
+            <i className="fas fa-brush"></i>
+          </Pallete>
+          {openPicker && (
+            <Picker>
+              <CompactPicker
+                color={fontColor}
+                onChangeComplete={handleChangeComplete}
+              />
+            </Picker>
+          )}
+        </Label>
+        <Label>
+          <select
+            className={'select'}
+            ref={fontSizeRef}
+            name="fontSize"
+            value={fontSize}
+            onChange={onChange}
+          >
+            <option value="30px">30</option>
+            <option value="40px">40</option>
+            <option value="50px">50</option>
+            <option value="60px">60</option>
+            <option value="70px">70</option>
+          </select>
+        </Label>
       </div>
 
-      <div>
-        {/* <label>테마</label> */}
-        <select ref={themeRef} name="theme" value={theme} onChange={onChange}>
+      <Label>
+        <select
+          className={'select'}
+          ref={themeRef}
+          name="theme"
+          value={theme}
+          onChange={onChange}
+        >
           <option value="border">border</option>
           <option value="border-red">border-red</option>
+          <option value="card">card</option>
+          <option value="opacity">opacity</option>
         </select>
-      </div>
+      </Label>
 
       {/* <label>타이틀</label>
       <textarea
@@ -118,9 +165,13 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         value={sub}
         onChange={onChange}
       ></textarea> */}
-      <div>
-        <FileInput name={fileName} onFileChange={onFileChange} />
-        <Button name="Delete" onClick={onSubmit}></Button>
+      <div className={'buttons'}>
+        <FileInput
+          name={fileName}
+          onFileChange={onFileChange}
+          className={'button'}
+        />
+        <Button name="Delete" onClick={onSubmit} className={'button'}></Button>
       </div>
     </CardForm>
   );
@@ -131,22 +182,75 @@ export default CardEditForm;
 const CardForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* height: 360px; */
-
-  div {
-    margin: 0.5em 0;
-  }
+  /* justify-content: center; */
+  align-items: center;
+  min-height: calc(300px);
+  height: ${(props) => props.height}px;
+  margin-bottom: 2em;
+  border-bottom: 2px dashed white;
 
   input,
   select,
   textarea {
     border: none;
     background: none;
-    width: 20em;
+    height: 40px;
+    text-align: center;
   }
 
-  input {
-    border-bottom: solid 1px black;
-    padding-bottom: 0.4em;
+  .select {
+    background-color: white;
+    border-radius: 4px;
+    /* border: 2px dashed ${(props) => props.theme.color.makerGreen}; */
+    padding: 0 1em;
+    margin-right: 0.5em;
   }
+
+  .size {
+    width: 5em;
+    border-radius: 4px;
+    text-align: center;
+    background-color: white;
+    &:not(:last-child) {
+      margin-right: 0.5em;
+    }
+  }
+  .title {
+    border-bottom: solid 2px ${(props) => props.theme.color.makerGreen};
+    width: 20em;
+  }
+  .font {
+    display: flex;
+  }
+
+  .buttons {
+    display: flex;
+    margin-top: 1em;
+  }
+  .button {
+    padding: 2em;
+  }
+`;
+const Label = styled.div`
+  margin: 0.5em 0;
+`;
+
+const Pallete = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  /* border-radius: 4px; */
+  cursor: pointer;
+  background-color: white;
+  color: ${(props) => props.fontColor};
+  text-shadow: 1px 1px 5px lightgrey;
+`;
+
+const Picker = styled.div`
+  position: absolute;
+  margin-top: 0.3em;
+  z-index: 2;
 `;

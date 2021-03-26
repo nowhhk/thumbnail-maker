@@ -12,9 +12,10 @@ const Buttons = styled.button`
   color: ${({ theme }) => theme.color.makerWhite};
   font-weight: bold;
   cursor: pointer;
-  padding: 0.5em;
   font-size: 0.8rem;
-  flex: 1 1 50%;
+  padding: 1em;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.color.makerWhite};
 
   &:hover {
     opacity: 0.8;

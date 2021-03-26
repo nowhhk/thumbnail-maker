@@ -30,7 +30,7 @@ const ImageFileInput = ({ uploadService, name, onFileChange }) => {
         onChange={onChange}
       />
       {!loading && (
-        <UploadBtn onClick={onButtonClick}>{name || '이미지 선택'}</UploadBtn>
+        <UploadBtn onClick={onButtonClick}>{name || 'No Image'}</UploadBtn>
       )}
       {loading && <Loading></Loading>}
     </div>
@@ -44,8 +44,11 @@ const UploadBtn = styled.button`
   color: ${({ theme }) => theme.color.makerWhite};
   font-weight: bold;
   cursor: pointer;
-  padding: 0.5em;
+  padding: 1em;
   font-size: 0.8rem;
+  margin-right: 0.5em;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.color.makerWhite};
   &:hover {
     opacity: 0.8;
   }
@@ -58,9 +61,11 @@ const Input = styled.input`
 const Loading = styled.div`
   width: 1.5em;
   height: 1.5em;
+  margin-right: 1em;
+  margin-top: 0.5em;
   border-radius: 50%;
   border: 3px solid ${({ theme }) => theme.color.makerLightGrey};
-  border-top: 3px solid ${({ theme }) => theme.color.makerPink};
+  border-top: 3px solid ${({ theme }) => theme.color.makeGreen};
   animation: spin 2s linear infinite;
 
   @keyframes spin {
