@@ -6,11 +6,13 @@ import styled from 'styled-components';
 
 const DEFAULT_IMAGE = '/image/default.jpg';
 
-const Card = ({ card }) => {
+const Card = ({ card, updateCard }) => {
   const {
     width,
     height,
     title,
+    x,
+    y,
     sub,
     theme,
     fileName,
@@ -47,8 +49,12 @@ const Card = ({ card }) => {
     link.click();
   }
 
-  const eventLogger = (e: MouseEvent, data: Object) => {
-    console.log(data.x, data.y);
+  const onStop = (e: MouseEvent, data: Object) => {
+    updateCard({
+      ...card,
+      x: data.x,
+      y: data.y,
+    });
   };
 
   return (
@@ -66,16 +72,17 @@ const Card = ({ card }) => {
         <Draggable
           axis="both"
           handle=".handle"
-          defaultPosition={{ x: 0, y: 0 }}
-          position={null}
+          defaultPosition={{ x: x, y: y }}
           scale={1}
-          onStop={eventLogger}
+          onStop={onStop}
         >
           <Title
             className="handle"
             fontColor={fontColor}
             fontSize={fontSize || '30px'}
             fontStyle={fontStyle}
+            x={x}
+            y={y}
           >
             {title}
           </Title>
@@ -145,8 +152,8 @@ const List = styled.li`
 `;
 const Title = styled.h1`
   position: absolute;
-  top: 20px;
-  left: 20px;
+  /* top: ${(props) => props.y}; */
+  /* left: ${(props) => props.x}; */
   word-wrap: normal;
   word-break: break-word;
   width: 90%;

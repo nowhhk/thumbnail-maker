@@ -32,6 +32,8 @@ const CardAddForm = ({ FileInput, onAdd }) => {
     event.preventDefault();
     const card = {
       id: Date.now(),
+      x: 0,
+      y: 0,
       width: widthRef.current.value,
       height: heightRef.current.value,
       theme: themeRef.current.value,

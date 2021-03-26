@@ -2,11 +2,11 @@ import Card from '../card/card';
 import React from 'react';
 import styled from 'styled-components';
 
-const Preview = ({ cards }) => (
+const Preview = ({ cards, updateCard }) => (
   <Section>
     <ul>
       {Object.keys(cards).map((key) => (
-        <Card key={key} card={cards[key]} />
+        <Card key={key} card={cards[key]} updateCard={updateCard} />
       ))}
     </ul>
   </Section>

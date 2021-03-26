@@ -67,7 +67,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
           updateCard={updateCard}
           deleteCard={deleteCard}
         />
-        <Preview cards={cards} />
+        <Preview cards={cards} updateCard={updateCard} />
       </Container>
       <Footer />
     </Section>
