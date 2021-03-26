@@ -66,9 +66,6 @@ const Card = ({ card, updateCard }) => {
         width={width}
         height={height}
       >
-        <div
-          className={`${getStyle(theme)}` === 'opacity' && 'opacity-back'}
-        ></div>
         <Draggable
           axis="both"
           handle=".handle"
@@ -124,19 +121,10 @@ const List = styled.li`
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
   position: relative;
-  background: transparent;
-  background-image: url(${(props) => props.url});
+
+  background: url(${(props) => props.url});
   background-size: cover;
   background-repeat: no-repeat;
-
-  /* margin-bottom: 2em; */
-
-  .opacity-back {
-    width: ${(props) => props.width}px;
-    height: ${(props) => props.height}px;
-    background-color: rgba(255, 255, 255, 0.7);
-    position: relative;
-  }
 
   &.borderStyle {
     border: 5px solid black;
@@ -149,6 +137,20 @@ const List = styled.li`
     background-position: 20px;
     background-color: white;
   }
+  &.opacity {
+    background: white;
+  }
+  &.opacity::before {
+    content: '';
+    background: url(${(props) => props.url});
+    background-size: cover;
+    opacity: 0.4;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
 `;
 const Title = styled.h1`
   position: absolute;
@@ -157,7 +159,6 @@ const Title = styled.h1`
   word-wrap: normal;
   word-break: break-word;
   width: 90%;
-  z-index: 0;
   color: ${(props) => props.fontColor};
   font-size: ${(props) => props.fontSize};
   font-family: ${(props) => props.fontStyle};
