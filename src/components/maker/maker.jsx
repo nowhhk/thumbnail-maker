@@ -12,6 +12,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = history.state;
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
+  const [login, setLogin] = useState(false);
 
   const onLogout = () => {
     authService.logout();
@@ -31,6 +32,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid);
+        setLogin(true);
       } else {
         history.push('/');
       }
@@ -59,7 +61,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
 
   return (
     <Section>
-      <Header onLogout={onLogout} />
+      <Header onLogout={onLogout} userId={userId} />
       <Container>
         <Editor
           FileInput={FileInput}
@@ -85,8 +87,7 @@ const Section = styled.section`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.color.makerLightPink};
-  background-color: #f8dc81;
+  background-color: ${({ theme }) => theme.color.makerYellow};
 `;
 
 const Container = styled.div`

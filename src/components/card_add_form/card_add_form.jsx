@@ -40,6 +40,9 @@ const CardAddForm = ({ FileInput, onAdd }) => {
       // sub: subRef.current.value || '',
       title: titleRef.current.value || '',
       fontColor: fontColor,
+      fontSize: fontSizeRef.current.value,
+      fontStyle: fontStyleRef.current.value,
+      backColor: backColor,
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
     };
@@ -48,8 +51,14 @@ const CardAddForm = ({ FileInput, onAdd }) => {
     onAdd(card);
   };
   const [openPicker, setOpenPicker] = useState(false);
+  const [openBackPicker, setOpenBackPicker] = useState(false);
+
   const handlePicker = () => {
     setOpenPicker(!openPicker);
+  };
+
+  const handleBackPicker = () => {
+    setOpenBackPicker(!openBackPicker);
   };
 
   const [fontColor, setFontColor] = useState('#000');
@@ -57,6 +66,12 @@ const CardAddForm = ({ FileInput, onAdd }) => {
   const handleChangeComplete = (color) => {
     setFontColor(color.hex);
     setOpenPicker(false);
+  };
+
+  const [backColor, setBackColor] = useState('#ffffff');
+  const handleBackChangeComplete = (color) => {
+    setBackColor(color.hex);
+    setOpenBackPicker(false);
   };
 
   return (
@@ -87,7 +102,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           placeholder="Type the title"
         />
       </Label>
-      <div className={'font'}>
+      <div className="row">
         <Label>
           <select name="fontStyle" ref={fontStyleRef} className={'select'}>
             <option value="Nanum Myeongjo">Nanum Myeongjo</option>
@@ -126,15 +141,35 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           </select>
         </Label>
       </div>
+      <div className="row">
+        <Label>
+          <select className={'select'} ref={themeRef} name="theme">
+            <option value="border">black border</option>
+            <option value="border-white">white border</option>
+            <option value="card">card style</option>
+            <option value="opacity">opacity image</option>
+            <option value="color">color background</option>
+          </select>
+        </Label>
 
-      <Label>
-        <select className={'select'} ref={themeRef} name="theme">
-          <option value="border">border</option>
-          <option value="border-red">border-red</option>
-          <option value="card">card</option>
-          <option value="opacity">opacity</option>
-        </select>
-      </Label>
+        <Label>
+          <BackPallete
+            className={'select'}
+            backColor={backColor}
+            onClick={handleBackPicker}
+          >
+            <i class="fas fa-fill-drip"></i>
+          </BackPallete>
+          {openBackPicker && (
+            <Picker>
+              <CompactPicker
+                color={backColor}
+                onChangeComplete={handleBackChangeComplete}
+              />
+            </Picker>
+          )}
+        </Label>
+      </div>
 
       <div className={'buttons'}>
         <FileInput name={file.fileName} onFileChange={onFileChange} />
@@ -182,7 +217,7 @@ const CardForm = styled.form`
     border-bottom: solid 2px ${(props) => props.theme.color.makerGreen};
     width: 20em;
   }
-  .font {
+  .row {
     display: flex;
   }
 
@@ -208,7 +243,9 @@ const Pallete = styled.div`
   color: ${(props) => props.fontColor};
   text-shadow: 1px 1px 5px lightgrey;
 `;
-
+const BackPallete = styled(Pallete)`
+  color: ${(props) => props.backColor};
+`;
 const Picker = styled.div`
   position: absolute;
   margin-top: 0.3em;

@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Header = ({ onLogout }) => (
+const Header = ({ userId, onLogout }) => (
   <HeaderLayout>
-    {onLogout && <button onClick={onLogout}>Logout</button>}
+    {userId && (
+      <LogoutBtn onClick={onLogout}>
+        <i class="fas fa-sign-out-alt"></i>
+      </LogoutBtn>
+    )}
     <h1>Thumbnail Maker</h1>
   </HeaderLayout>
 );
@@ -21,8 +25,18 @@ const HeaderLayout = styled.header`
   align-items: center;
   background-color: ${({ theme }) => theme.color.makerGreen};
   color: ${({ theme }) => theme.color.makerWhite};
-
+  position: relative;
   h1 {
     font-size: 1.5em;
   }
+`;
+
+const LogoutBtn = styled.button`
+  position: absolute;
+  right: 0.7em;
+  top: 0.7em;
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.color.makerWhite};
+  cursor: pointer;
 `;

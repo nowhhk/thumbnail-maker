@@ -20,6 +20,7 @@ const Card = ({ card, updateCard }) => {
     fontColor,
     fontSize,
     fontStyle,
+    backColor,
   } = card;
   const url = fileURL || DEFAULT_IMAGE;
   const captureRef = useRef();
@@ -65,6 +66,8 @@ const Card = ({ card, updateCard }) => {
         className={`${getStyle(theme)}`}
         width={width}
         height={height}
+        fontSize={fontSize}
+        backColor={backColor}
       >
         <Draggable
           axis="both"
@@ -96,12 +99,14 @@ function getStyle(theme) {
   switch (theme) {
     case 'border':
       return 'borderStyle';
-    case 'border-red':
-      return 'borderStyle red';
+    case 'border-white':
+      return 'borderStyle white';
     case 'card':
       return 'card';
     case 'opacity':
       return 'opacity';
+    case 'color':
+      return 'color';
     case null:
       return null;
     default:
@@ -123,19 +128,19 @@ const List = styled.li`
   position: relative;
 
   background: url(${(props) => props.url});
+  background-color: ${(props) => props.backColor};
   background-size: cover;
   background-repeat: no-repeat;
 
   &.borderStyle {
     border: 5px solid black;
   }
-  &.red {
+  &.white {
     border-color: white;
   }
   &.card {
     background-size: 280px 320px;
     background-position: 20px;
-    background-color: white;
   }
   &.opacity {
     background: white;
@@ -150,6 +155,10 @@ const List = styled.li`
     left: 0px;
     right: 0px;
     bottom: 0px;
+  }
+  &.color {
+    background-image: none !important;
+    background-color: ${(props) => props.backColor};
   }
 `;
 const Title = styled.h1`

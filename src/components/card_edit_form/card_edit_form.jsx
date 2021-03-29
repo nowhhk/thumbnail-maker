@@ -16,6 +16,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
     width,
     height,
     fontSize,
+    backColor,
   } = card;
 
   const formRef = useRef();
@@ -29,6 +30,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const fontSizeRef = useRef();
 
   const [openPicker, setOpenPicker] = useState(false);
+  const [openBackPicker, setOpenBackPicker] = useState(false);
 
   const onSubmit = () => {
     deleteCard(card);
@@ -60,8 +62,18 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
     setOpenPicker(false);
   };
 
+  const handleBackChangeComplete = (color) => {
+    updateCard({
+      ...card,
+      backColor: color.hex,
+    });
+    setOpenBackPicker(false);
+  };
   const handlePicker = () => {
     setOpenPicker(!openPicker);
+  };
+  const handleBackPicker = () => {
+    setOpenBackPicker(!openBackPicker);
   };
 
   return (
@@ -95,7 +107,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           onChange={onChange}
         />
       </Label>
-      <div className={'font'}>
+      <div className="row">
         <Label>
           <select
             ref={fontStyleRef}
@@ -142,21 +154,40 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           </select>
         </Label>
       </div>
-
-      <Label>
-        <select
-          className={'select'}
-          ref={themeRef}
-          name="theme"
-          value={theme}
-          onChange={onChange}
-        >
-          <option value="border">border</option>
-          <option value="border-red">border-red</option>
-          <option value="card">card</option>
-          <option value="opacity">opacity</option>
-        </select>
-      </Label>
+      <div className="row">
+        <Label>
+          <select
+            className={'select'}
+            ref={themeRef}
+            name="theme"
+            value={theme}
+            onChange={onChange}
+          >
+            <option value="border">black border</option>
+            <option value="border-white">white border</option>
+            <option value="card">card style</option>
+            <option value="opacity">opacity image</option>
+            <option value="color">color background</option>
+          </select>
+        </Label>
+        <Label>
+          <BackPallete
+            className={'select'}
+            backColor={backColor}
+            onClick={handleBackPicker}
+          >
+            <i class="fas fa-fill-drip"></i>
+          </BackPallete>
+          {openBackPicker && (
+            <Picker>
+              <CompactPicker
+                color={backColor}
+                onChangeComplete={handleBackChangeComplete}
+              />
+            </Picker>
+          )}
+        </Label>
+      </div>
 
       {/* <label>타이틀</label>
       <textarea
@@ -219,7 +250,7 @@ const CardForm = styled.form`
     border-bottom: solid 2px ${(props) => props.theme.color.makerGreen};
     width: 20em;
   }
-  .font {
+  .row {
     display: flex;
   }
 
@@ -236,7 +267,7 @@ const Label = styled.div`
 `;
 
 const Pallete = styled.div`
-  position: relative;
+  position: relative !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -247,6 +278,10 @@ const Pallete = styled.div`
   background-color: white;
   color: ${(props) => props.fontColor};
   text-shadow: 1px 1px 5px lightgrey;
+`;
+
+const BackPallete = styled(Pallete)`
+  color: ${(props) => props.backColor};
 `;
 
 const Picker = styled.div`

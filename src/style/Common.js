@@ -11,6 +11,8 @@ export default {
     makerColorful:
       "linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%)",
     makerWheat: "wheat",
+
+    makerYellow: "#f8dc81",
   },
   size : {
     mediaQuery: "62em"
