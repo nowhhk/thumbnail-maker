@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 const Footer = (props) => (
   <FooterLayout>
-    <i class="fab fa-github"></i>
+    <i
+      class="fab fa-github"
+      onClick={() => window.open('https://github.com/nowhhk/maker', '_blank')}
+    ></i>
   </FooterLayout>
 );
 
@@ -20,5 +23,6 @@ const FooterLayout = styled.header`
 
   i {
     font-size: 1.5em;
+    cursor: pointer;
   }
 `;

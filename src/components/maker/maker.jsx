@@ -12,7 +12,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = history.state;
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
-  const [login, setLogin] = useState(false);
 
   const onLogout = () => {
     authService.logout();
@@ -32,7 +31,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid);
-        setLogin(true);
       } else {
         history.push('/');
       }
