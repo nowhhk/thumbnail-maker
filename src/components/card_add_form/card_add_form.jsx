@@ -7,9 +7,7 @@ import styled from 'styled-components';
 const CardAddForm = ({ FileInput, onAdd }) => {
   const formRef = useRef();
   const themeRef = useRef();
-  const fontColorRef = useRef();
   const fontStyleRef = useRef();
-  const subRef = useRef();
   const fontSizeRef = useRef();
   const titleRef = useRef();
   const widthRef = useRef();
@@ -37,7 +35,6 @@ const CardAddForm = ({ FileInput, onAdd }) => {
       width: widthRef.current.value,
       height: heightRef.current.value,
       theme: themeRef.current.value,
-      // sub: subRef.current.value || '',
       title: titleRef.current.value || '',
       fontColor: fontColor,
       fontSize: fontSizeRef.current.value,
@@ -78,7 +75,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
     <CardForm ref={formRef}>
       <Label>
         <input
-          className={'size'}
+          className="size"
           ref={widthRef}
           type="text"
           name="width"
@@ -86,7 +83,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
         />
         x
         <input
-          className={'size'}
+          className="size"
           ref={heightRef}
           type="text"
           name="height"
@@ -104,19 +101,16 @@ const CardAddForm = ({ FileInput, onAdd }) => {
       </Label>
       <div className="row">
         <Label>
-          <select name="fontStyle" ref={fontStyleRef} className={'select'}>
+          <select name="fontStyle" ref={fontStyleRef} className="select">
             <option value="Nanum Myeongjo">Nanum Myeongjo</option>
             <option value="Black Han Sans">Black Han Sans</option>
             <option value="Nanum Pen Script">Nanum Pen Script</option>
           </select>
         </Label>
-        {/* <select ref={fontColorRef} name="fontColor">
-          <option value="white">white</option>
-          <option value="black">black</option>
-        </select> */}
+
         <Label>
           <Pallete
-            className={'select'}
+            className="select"
             fontColor={fontColor}
             onClick={handlePicker}
           >
@@ -132,7 +126,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           )}
         </Label>
         <Label>
-          <select className={'select'} name="fontSize" ref={fontSizeRef}>
+          <select className="select" name="fontSize" ref={fontSizeRef}>
             <option value="30px">30</option>
             <option value="40px">40</option>
             <option value="50px">50</option>
@@ -237,7 +231,6 @@ const Pallete = styled.div`
   align-items: center;
   width: 40px;
   height: 40px;
-  /* border-radius: 4px; */
   cursor: pointer;
   background-color: white;
   color: ${(props) => props.fontColor};

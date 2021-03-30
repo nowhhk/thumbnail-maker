@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 const Editor = ({ FileInput, cards, updateCard, deleteCard }) => (
   <Section>
-    {/* <Title>Thumbnail Maker</Title> */}
     {Object.keys(cards).map((key) => (
       <CardEditForm
         key={key}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import Button from '../button/button';
 import { CompactPicker } from 'react-color';
@@ -7,10 +7,8 @@ import styled from 'styled-components';
 const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const {
     title,
-    sub,
     theme,
     fileName,
-    fileURL,
     fontColor,
     fontStyle,
     width,
@@ -18,16 +16,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
     fontSize,
     backColor,
   } = card;
-
-  const formRef = useRef();
-  const themeRef = useRef();
-  const fontColorRef = useRef();
-  const subRef = useRef();
-  const titleRef = useRef();
-  const fontStyleRef = useRef();
-  const widthRef = useRef();
-  const heightRef = useRef();
-  const fontSizeRef = useRef();
 
   const [openPicker, setOpenPicker] = useState(false);
   const [openBackPicker, setOpenBackPicker] = useState(false);
@@ -77,11 +65,10 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
   };
 
   return (
-    <CardForm ref={formRef} height={height}>
+    <CardForm height={height}>
       <Label>
         <input
-          className={'size'}
-          ref={widthRef}
+          className="size"
           type="text"
           name="width"
           value={width}
@@ -89,8 +76,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         />
         x
         <input
-          className={'size'}
-          ref={heightRef}
+          className="size"
           type="text"
           name="height"
           value={height}
@@ -99,8 +85,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       </Label>
       <Label>
         <input
-          className={'title'}
-          ref={titleRef}
+          className="title"
           type="text"
           name="title"
           value={title}
@@ -110,7 +95,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       <div className="row">
         <Label>
           <select
-            ref={fontStyleRef}
             name="fontStyle"
             value={fontStyle}
             onChange={onChange}
@@ -123,7 +107,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         </Label>
         <Label>
           <Pallete
-            className={'select'}
+            className="select"
             fontColor={fontColor}
             onClick={handlePicker}
           >
@@ -140,8 +124,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         </Label>
         <Label>
           <select
-            className={'select'}
-            ref={fontSizeRef}
+            className="select"
             name="fontSize"
             value={fontSize}
             onChange={onChange}
@@ -157,8 +140,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       <div className="row">
         <Label>
           <select
-            className={'select'}
-            ref={themeRef}
+            className="select"
             name="theme"
             value={theme}
             onChange={onChange}
@@ -172,7 +154,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         </Label>
         <Label>
           <BackPallete
-            className={'select'}
+            className="select"
             backColor={backColor}
             onClick={handleBackPicker}
           >
@@ -189,20 +171,13 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         </Label>
       </div>
 
-      {/* <label>타이틀</label>
-      <textarea
-        ref={subRef}
-        name="sub"
-        value={sub}
-        onChange={onChange}
-      ></textarea> */}
-      <div className={'buttons'}>
+      <div className="buttons">
         <FileInput
           name={fileName}
           onFileChange={onFileChange}
-          className={'button'}
+          className="button"
         />
-        <Button name="Delete" onClick={onSubmit} className={'button'}></Button>
+        <Button name="Delete" onClick={onSubmit} className="button"></Button>
       </div>
     </CardForm>
   );
@@ -213,7 +188,6 @@ export default CardEditForm;
 const CardForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   min-height: calc(300px);
   height: ${(props) => props.height}px;
@@ -232,7 +206,6 @@ const CardForm = styled.form`
   .select {
     background-color: white;
     border-radius: 4px;
-    /* border: 2px dashed ${(props) => props.theme.color.makerGreen}; */
     padding: 0 1em;
     margin-right: 0.5em;
   }
@@ -273,7 +246,6 @@ const Pallete = styled.div`
   align-items: center;
   width: 40px;
   height: 40px;
-  /* border-radius: 4px; */
   cursor: pointer;
   background-color: white;
   color: ${(props) => props.fontColor};

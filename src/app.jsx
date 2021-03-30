@@ -1,6 +1,6 @@
 import './app.css';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import Login from './components/login/login';
 import Maker from './components/maker/maker';
