@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
 import styled from 'styled-components';
 
-const DEFAULT_IMAGE = '/image/default.jpg';
+const DEFAULT_IMAGE = '/image/default.jpeg';
 
 const Card = ({ card, updateCard }) => {
   const {
@@ -13,9 +13,7 @@ const Card = ({ card, updateCard }) => {
     title,
     x,
     y,
-    sub,
     theme,
-    fileName,
     fileURL,
     fontColor,
     fontSize,
@@ -50,7 +48,7 @@ const Card = ({ card, updateCard }) => {
     link.click();
   }
 
-  const onStop = (e: MouseEvent, data: Object) => {
+  const onStop = (data) => {
     updateCard({
       ...card,
       x: data.x,
@@ -89,7 +87,7 @@ const Card = ({ card, updateCard }) => {
         </Draggable>
       </List>
       <PNGDown onClick={onDownload}>
-        <i class="fas fa-file-download"></i> Download
+        <i className="fas fa-file-download"></i> Download
       </PNGDown>
     </Container>
   );
@@ -97,6 +95,8 @@ const Card = ({ card, updateCard }) => {
 
 function getStyle(theme) {
   switch (theme) {
+    case 'none':
+      return null;
     case 'border':
       return 'borderStyle';
     case 'border-white':
@@ -172,6 +172,7 @@ const Title = styled.h1`
   font-size: ${(props) => props.fontSize};
   font-family: ${(props) => props.fontStyle};
   cursor: move;
+  -webkit-text-stroke: 1px #000;
 `;
 
 const PNGDown = styled.div`
