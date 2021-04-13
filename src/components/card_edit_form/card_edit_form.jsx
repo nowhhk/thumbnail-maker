@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Button from '../button/button';
+import { CloseOutlined } from '@ant-design/icons';
 import { CompactPicker } from 'react-color';
 import styled from 'styled-components';
 
@@ -74,7 +75,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           value={width}
           onChange={onChange}
         />
-        x
+        <CloseOutlined style={{ fontSize: '0.7em', marginRight: '0.5em' }} />
         <input
           className="size"
           type="text"
@@ -110,16 +111,19 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
             className="select"
             fontColor={fontColor}
             onClick={handlePicker}
+            style={{ position: 'absolute' }}
           >
             <i className="fas fa-brush"></i>
           </Pallete>
           {openPicker && (
-            <Picker>
-              <CompactPicker
-                color={fontColor}
-                onChangeComplete={handleChangeComplete}
-              />
-            </Picker>
+            <div style={{ position: 'relative' }}>
+              <Picker>
+                <CompactPicker
+                  color={fontColor}
+                  onChangeComplete={handleChangeComplete}
+                />
+              </Picker>
+            </div>
           )}
         </Label>
         <Label>
@@ -145,6 +149,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
             value={theme}
             onChange={onChange}
           >
+            <option value="none">No theme</option>
             <option value="border">black border</option>
             <option value="border-white">white border</option>
             <option value="card">card style</option>
@@ -157,16 +162,19 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
             className="select"
             backColor={backColor}
             onClick={handleBackPicker}
+            style={{ position: 'absolute' }}
           >
             <i class="fas fa-fill-drip"></i>
           </BackPallete>
           {openBackPicker && (
-            <Picker>
-              <CompactPicker
-                color={backColor}
-                onChangeComplete={handleBackChangeComplete}
-              />
-            </Picker>
+            <div style={{ position: 'relative' }}>
+              <Picker>
+                <CompactPicker
+                  color={backColor}
+                  onChangeComplete={handleBackChangeComplete}
+                />
+              </Picker>
+            </div>
           )}
         </Label>
       </div>

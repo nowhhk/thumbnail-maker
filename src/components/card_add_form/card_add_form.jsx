@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import Button from '../button/button';
+import { CloseOutlined } from '@ant-design/icons';
 import { CompactPicker } from 'react-color';
 import styled from 'styled-components';
 
@@ -81,7 +82,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           name="width"
           defaultValue="640"
         />
-        x
+        <CloseOutlined style={{ fontSize: '0.7em', marginRight: '0.5em' }} />
         <input
           className="size"
           ref={heightRef}
@@ -97,6 +98,8 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           type="text"
           name="title"
           placeholder="Type the title"
+          onFocus={(e) => (e.target.placeholder = '')}
+          onBlur={(e) => (e.target.placeholder = 'Type the title')}
         />
       </Label>
       <div className="row">
@@ -113,20 +116,28 @@ const CardAddForm = ({ FileInput, onAdd }) => {
             className="select"
             fontColor={fontColor}
             onClick={handlePicker}
+            style={{ position: 'absolute' }}
           >
             <i className="fas fa-brush"></i>
           </Pallete>
           {openPicker && (
-            <Picker>
-              <CompactPicker
-                color={fontColor}
-                onChangeComplete={handleChangeComplete}
-              />
-            </Picker>
+            <div style={{ position: 'relative' }}>
+              <Picker>
+                <CompactPicker
+                  color={fontColor}
+                  onChangeComplete={handleChangeComplete}
+                />
+              </Picker>
+            </div>
           )}
         </Label>
         <Label>
-          <select className="select" name="fontSize" ref={fontSizeRef}>
+          <select
+            defaultValue="30px"
+            className="select"
+            name="fontSize"
+            ref={fontSizeRef}
+          >
             <option value="30px">30</option>
             <option value="40px">40</option>
             <option value="50px">50</option>
@@ -138,6 +149,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
       <div className="row">
         <Label>
           <select className={'select'} ref={themeRef} name="theme">
+            <option value="none">No theme</option>
             <option value="border">black border</option>
             <option value="border-white">white border</option>
             <option value="card">card style</option>
@@ -151,16 +163,19 @@ const CardAddForm = ({ FileInput, onAdd }) => {
             className={'select'}
             backColor={backColor}
             onClick={handleBackPicker}
+            style={{ position: 'absolute' }}
           >
             <i class="fas fa-fill-drip"></i>
           </BackPallete>
           {openBackPicker && (
-            <Picker>
-              <CompactPicker
-                color={backColor}
-                onChangeComplete={handleBackChangeComplete}
-              />
-            </Picker>
+            <div style={{ position: 'relative' }}>
+              <Picker>
+                <CompactPicker
+                  color={backColor}
+                  onChangeComplete={handleBackChangeComplete}
+                />
+              </Picker>
+            </div>
           )}
         </Label>
       </div>
@@ -225,7 +240,7 @@ const Label = styled.div`
 `;
 
 const Pallete = styled.div`
-  position: relative;
+  position: relative !important;
   display: flex;
   justify-content: center;
   align-items: center;
