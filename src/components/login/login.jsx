@@ -13,10 +13,8 @@ const Login = ({ authService }) => {
       state: { id: userId },
     });
   };
-  const onLogin = (event) => {
-    authService
-      .login(event.currentTarget.textContent)
-      .then((data) => goToMaker(data.user.uid));
+  const onLogin = (text) => {
+    authService.login(text).then((data) => goToMaker(data.user.uid));
   };
 
   useEffect(() => {
@@ -29,13 +27,16 @@ const Login = ({ authService }) => {
     <Section>
       <Header onLogout />
       <section>
-        <h1>Login</h1>
         <ul>
           <li>
-            <button onClick={onLogin}>Google</button>
+            <Buttons onClick={() => onLogin('Google')}>
+              <i className="fab fa-google google icon"></i>Google로 로그인하기
+            </Buttons>
           </li>
           <li>
-            <button onClick={onLogin}>Github</button>
+            <Buttons onClick={() => onLogin('Github')}>
+              <i className="fab fa-github github icon"></i>Github으로 로그인하기
+            </Buttons>
           </li>
         </ul>
       </section>
@@ -55,4 +56,33 @@ const Section = styled.section`
   flex-direction: column;
   /* justify-content: space-around; */
   background-color: ${({ theme }) => theme.color.makerWhite};
+  ul {
+    margin: 1.5em 1em;
+    li {
+      margin: 0.3em 0;
+    }
+  }
+`;
+
+const Buttons = styled.button`
+  width: 100%;
+  color: ${({ theme }) => theme.color.makerGreen};
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 1em;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.color.makerWhite};
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .icon {
+    font-size: 1.2em;
+    float: left;
+    &.google {
+      color: #1a73e8;
+    }
+  }
 `;
