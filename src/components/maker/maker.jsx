@@ -25,7 +25,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
     authService.onAuthChange((user) => {
@@ -35,7 +35,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
         history.push('/');
       }
     });
-  });
+  }, [authService, history, userId]);
 
   const deleteCard = (card) => {
     setCards((cards) => {
@@ -91,7 +91,7 @@ const Section = styled.section`
 const Container = styled.div`
   display: flex;
   flex: 1;
-  overflow: scroll;
+  overflow: auto;
   height: calc(100vh - 8em);
 
   @media only screen and (max-width: ${(props) =>
