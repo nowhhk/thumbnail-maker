@@ -45,10 +45,14 @@ const UploadBtn = styled.button`
   font-weight: bold;
   cursor: pointer;
   padding: 1em;
+  max-width: 7em;
   font-size: 0.8rem;
   margin-right: 0.5em;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.color.makerWhite};
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   &:hover {
     opacity: 0.8;
   }

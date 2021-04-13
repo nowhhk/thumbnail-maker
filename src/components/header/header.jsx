@@ -5,7 +5,7 @@ const Header = ({ userId, onLogout }) => (
   <HeaderLayout>
     {userId && (
       <LogoutBtn onClick={onLogout}>
-        <i class="fas fa-sign-out-alt"></i>
+        <i className="fas fa-sign-out-alt"></i>
       </LogoutBtn>
     )}
     <h1>Thumbnail Maker</h1>
@@ -28,6 +28,7 @@ const HeaderLayout = styled.header`
   position: relative;
   h1 {
     font-size: 1.5em;
+    font-family: 'Signika', sans-serif;
   }
 `;
 
