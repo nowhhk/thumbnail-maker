@@ -48,7 +48,7 @@ const Card = ({ card, updateCard }) => {
     link.click();
   }
 
-  const onStop = (data) => {
+  const onStop = (e: MouseEvent, data: Object) => {
     updateCard({
       ...card,
       x: data.x,
