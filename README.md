@@ -1,5 +1,5 @@
 # thumbnail maker
-유튜브,블로그,카드뉴스 등 간단한 썸네일 이미지 만들기
+유튜브,블로그,카드뉴스 등 간단한 썸네일 이미지를 생성하여 데이터와 파일로 저장할 수 있는 웹사이트
 
 React Hook, Styled-component, Firebase, Cloudinary,  html2canvas, Draggable
 
