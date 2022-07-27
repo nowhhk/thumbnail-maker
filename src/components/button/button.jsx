@@ -8,7 +8,7 @@ const Button = ({ name, onClick }) => (
 export default Button;
 
 const Buttons = styled.button`
-  background-color: ${({ theme }) => theme.color.makerGreen};
+  background-color: ${({ theme }) => theme.color.makerBlack};
   color: ${({ theme }) => theme.color.makerWhite};
   font-weight: bold;
   cursor: pointer;
@@ -16,6 +16,7 @@ const Buttons = styled.button`
   padding: 1em;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.color.makerWhite};
+  margin-top: 1.2rem;
 
   &:hover {
     opacity: 0.8;

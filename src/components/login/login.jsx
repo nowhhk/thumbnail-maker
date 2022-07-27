@@ -55,7 +55,9 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
-  background-color: ${({ theme }) => theme.color.makerWhite};
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  background-color: ${({ theme }) => theme.color.makerYellow};
   ul {
     margin: 1.5em 1em;
     li {
@@ -66,14 +68,17 @@ const Section = styled.section`
 
 const Buttons = styled.button`
   width: 100%;
-  color: ${({ theme }) => theme.color.makerGreen};
+  color: ${({ theme }) => theme.color.makerBlack};
   font-weight: bold;
   cursor: pointer;
   font-size: 0.8rem;
   padding: 1em;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.color.makerWhite};
+  border: none;
 
+  background-color: ${({ theme }) => theme.color.makerWhite};
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   &:hover {
     opacity: 0.8;
   }

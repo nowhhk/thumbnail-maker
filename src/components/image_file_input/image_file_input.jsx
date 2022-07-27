@@ -21,7 +21,8 @@ const ImageFileInput = ({ uploadService, name, onFileChange }) => {
   };
 
   return (
-    <div>
+    <FormInput>
+      <Label>이미지 선택</Label>
       <Input
         ref={inputRef}
         type="file"
@@ -29,22 +30,23 @@ const ImageFileInput = ({ uploadService, name, onFileChange }) => {
         name="file"
         onChange={onChange}
       />
+
       {!loading && (
-        <UploadBtn onClick={onButtonClick}>{name || 'No Image'}</UploadBtn>
+        <UploadBtn onClick={onButtonClick}>{name || '선택하기'}</UploadBtn>
       )}
       {loading && <Loading></Loading>}
-    </div>
+    </FormInput>
   );
 };
 
 export default ImageFileInput;
 
 const UploadBtn = styled.button`
-  background-color: ${({ theme }) => theme.color.makerGreen};
-  color: ${({ theme }) => theme.color.makerWhite};
+  background-color: ${({ theme }) => theme.color.makerBeige};
+  color: ${({ theme }) => theme.color.makerBlack};
   font-weight: bold;
   cursor: pointer;
-  padding: 1em;
+  padding: 0.8em 1.6em;
   max-width: 7em;
   font-size: 0.8rem;
   margin-right: 0.5em;
@@ -57,9 +59,23 @@ const UploadBtn = styled.button`
     opacity: 0.8;
   }
 `;
-
+const Label = styled.div`
+  font-size: 0.8rem;
+  width: 5rem;
+`;
+const FormInput = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+`;
 const Input = styled.input`
   display: none;
+`;
+const Name = styled.span`
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.color.makerGrey};
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.color.makerWhite};
 `;
 
 const Loading = styled.div`

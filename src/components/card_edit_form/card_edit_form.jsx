@@ -67,7 +67,8 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
 
   return (
     <CardForm height={height}>
-      <Label>
+      <FormInput>
+        <Label>사이즈</Label>
         <input
           className="size"
           type="text"
@@ -83,8 +84,9 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           value={height}
           onChange={onChange}
         />
-      </Label>
-      <Label>
+      </FormInput>
+      <FormInput>
+        <Label>타이틀</Label>
         <input
           className="title"
           type="text"
@@ -92,9 +94,10 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           value={title}
           onChange={onChange}
         />
-      </Label>
+      </FormInput>
       <div className="row">
-        <Label>
+        <FormInput>
+          <Label>폰트</Label>
           <select
             name="fontStyle"
             value={fontStyle}
@@ -105,8 +108,8 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
             <option value="Black Han Sans">Black Han Sans</option>
             <option value="Nanum Pen Script">Nanum Pen Script</option>
           </select>
-        </Label>
-        <Label>
+        </FormInput>
+        <FormInput>
           <Pallete
             className="select"
             fontColor={fontColor}
@@ -125,8 +128,8 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
               </Picker>
             </div>
           )}
-        </Label>
-        <Label>
+        </FormInput>
+        <FormInput>
           <select
             className="select"
             name="fontSize"
@@ -139,10 +142,11 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
             <option value="60px">60</option>
             <option value="70px">70</option>
           </select>
-        </Label>
+        </FormInput>
       </div>
       <div className="row">
-        <Label>
+        <FormInput>
+          <Label>테마</Label>
           <select
             className="select"
             name="theme"
@@ -156,8 +160,8 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
             <option value="opacity">opacity image</option>
             <option value="color">color background</option>
           </select>
-        </Label>
-        <Label>
+        </FormInput>
+        <FormInput>
           <BackPallete
             className="select"
             backColor={backColor}
@@ -176,17 +180,15 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
               </Picker>
             </div>
           )}
-        </Label>
+        </FormInput>
       </div>
 
-      <div className="buttons">
-        <FileInput
-          name={fileName}
-          onFileChange={onFileChange}
-          className="button"
-        />
-        <Button name="Delete" onClick={onSubmit} className="button"></Button>
-      </div>
+      <FileInput
+        name={fileName}
+        onFileChange={onFileChange}
+        className="button"
+      />
+      <Button name="삭제" onClick={onSubmit} className="button"></Button>
     </CardForm>
   );
 };
@@ -196,11 +198,11 @@ export default CardEditForm;
 const CardForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: calc(300px);
+  // align-items: center;
+  min-height: calc(400px);
   height: ${(props) => props.height}px;
   margin-bottom: 2em;
-  border-bottom: 2px dashed white;
+  border-bottom: 2px dashed ${(props) => props.theme.color.makerBeige};
 
   input,
   select,
@@ -208,7 +210,6 @@ const CardForm = styled.form`
     border: none;
     background: none;
     height: 40px;
-    text-align: center;
   }
 
   .select {
@@ -244,9 +245,14 @@ const CardForm = styled.form`
   }
 `;
 const Label = styled.div`
+  font-size: 0.8rem;
+  width: 5rem;
+`;
+const FormInput = styled.div`
+  display: flex;
+  align-items: center;
   margin: 0.5em 0;
 `;
-
 const Pallete = styled.div`
   position: relative !important;
   display: flex;

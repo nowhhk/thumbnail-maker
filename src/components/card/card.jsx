@@ -4,7 +4,7 @@ import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
 import styled from 'styled-components';
 
-const DEFAULT_IMAGE = '/image/default.jpeg';
+const DEFAULT_IMAGE = '/image/default.png';
 
 const Card = ({ card, updateCard }) => {
   const {
@@ -85,10 +85,10 @@ const Card = ({ card, updateCard }) => {
             {title}
           </Title>
         </Draggable>
+        <PNGDown onClick={onDownload}>
+          <i className="fas fa-file-download"></i> Download
+        </PNGDown>
       </List>
-      <PNGDown onClick={onDownload}>
-        <i className="fas fa-file-download"></i> Download
-      </PNGDown>
     </Container>
   );
 };
@@ -118,7 +118,7 @@ export default Card;
 
 const Container = styled.div`
   height: ${(props) => props.height}px;
-  min-height: 300px;
+  min-height: 400px;
   margin-bottom: 2em;
 `;
 
@@ -176,7 +176,10 @@ const Title = styled.h1`
 `;
 
 const PNGDown = styled.div`
-  color: ${(props) => props.theme.color.makerGreen};
+  position: absolute;
+  right: 1em;
+  top: 0.4em;
+  color: ${(props) => props.theme.color.makerBlack};
   font-size: 0.8em;
   font-weight: bold;
   margin-top: 0.5em;

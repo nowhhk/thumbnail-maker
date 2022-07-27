@@ -19,7 +19,7 @@ const FooterLayout = styled.header`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.color.makerGreen};
-  color: ${({ theme }) => theme.color.makerWhite};
+  color: ${({ theme }) => theme.color.makerBlack};
 
   i {
     font-size: 1.5em;

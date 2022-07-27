@@ -15,6 +15,7 @@ const Preview = ({ cards, updateCard }) => (
 export default Preview;
 
 const Section = styled.section`
+  min-height: 400px;
   flex-basis: 60%;
   padding: 1.5em 3em;
 `;

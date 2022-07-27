@@ -30,7 +30,7 @@ export default App;
 //styled-component
 
 const Background = styled.div`
-  background-color: ${({ theme }) => theme.color.makerShadow};
+  background-color: ${({ theme }) => theme.color.makerWhite};
   width: 100vw;
   height: 100%;
   min-height: 100vh;

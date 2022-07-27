@@ -18,13 +18,14 @@ export default Header;
 
 const HeaderLayout = styled.header`
   width: 100%;
-  height: 4em;
+  height: 6em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.color.makerGreen};
-  color: ${({ theme }) => theme.color.makerWhite};
+  color: ${({ theme }) => theme.color.makerBlack};
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   position: relative;
   h1 {
     font-size: 1.5em;
@@ -38,6 +39,6 @@ const LogoutBtn = styled.button`
   top: 0.7em;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.color.makerWhite};
+  color: ${({ theme }) => theme.color.makerBlack};
   cursor: pointer;
 `;

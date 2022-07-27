@@ -74,7 +74,8 @@ const CardAddForm = ({ FileInput, onAdd }) => {
 
   return (
     <CardForm ref={formRef}>
-      <Label>
+      <FormInput>
+        <Label>사이즈</Label>
         <input
           className="size"
           ref={widthRef}
@@ -90,8 +91,9 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           name="height"
           defaultValue="360"
         />
-      </Label>
-      <Label>
+      </FormInput>
+      <FormInput>
+        <Label>타이틀</Label>
         <input
           className={'title'}
           ref={titleRef}
@@ -101,17 +103,18 @@ const CardAddForm = ({ FileInput, onAdd }) => {
           onFocus={(e) => (e.target.placeholder = '')}
           onBlur={(e) => (e.target.placeholder = 'Type the title')}
         />
-      </Label>
+      </FormInput>
       <div className="row">
-        <Label>
+        <FormInput>
+          <Label>폰트</Label>
           <select name="fontStyle" ref={fontStyleRef} className="select">
             <option value="Nanum Myeongjo">Nanum Myeongjo</option>
             <option value="Black Han Sans">Black Han Sans</option>
             <option value="Nanum Pen Script">Nanum Pen Script</option>
           </select>
-        </Label>
+        </FormInput>
 
-        <Label>
+        <FormInput>
           <Pallete
             className="select"
             fontColor={fontColor}
@@ -130,8 +133,8 @@ const CardAddForm = ({ FileInput, onAdd }) => {
               </Picker>
             </div>
           )}
-        </Label>
-        <Label>
+        </FormInput>
+        <FormInput>
           <select
             defaultValue="30px"
             className="select"
@@ -144,10 +147,11 @@ const CardAddForm = ({ FileInput, onAdd }) => {
             <option value="60px">60</option>
             <option value="70px">70</option>
           </select>
-        </Label>
+        </FormInput>
       </div>
       <div className="row">
-        <Label>
+        <FormInput>
+          <Label>테마</Label>
           <select className={'select'} ref={themeRef} name="theme">
             <option value="none">No theme</option>
             <option value="border">black border</option>
@@ -156,9 +160,9 @@ const CardAddForm = ({ FileInput, onAdd }) => {
             <option value="opacity">opacity image</option>
             <option value="color">color background</option>
           </select>
-        </Label>
+        </FormInput>
 
-        <Label>
+        <FormInput>
           <BackPallete
             className={'select'}
             backColor={backColor}
@@ -177,13 +181,12 @@ const CardAddForm = ({ FileInput, onAdd }) => {
               </Picker>
             </div>
           )}
-        </Label>
+        </FormInput>
       </div>
 
-      <div className={'buttons'}>
-        <FileInput name={file.fileName} onFileChange={onFileChange} />
-        <Button name="Add" onClick={onSubmit}></Button>
-      </div>
+      <FileInput name={file.fileName} onFileChange={onFileChange} />
+
+      <Button name="만들기" onClick={onSubmit}></Button>
     </CardForm>
   );
 };
@@ -193,7 +196,7 @@ export default CardAddForm;
 const CardForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   height: 360px;
   margin-bottom: 2em;
 
@@ -203,7 +206,6 @@ const CardForm = styled.form`
     border: none;
     background: none;
     height: 40px;
-    text-align: center;
   }
 
   .select {
@@ -235,7 +237,14 @@ const CardForm = styled.form`
     margin-top: 1em;
   }
 `;
+
 const Label = styled.div`
+  font-size: 0.8rem;
+  width: 5rem;
+`;
+const FormInput = styled.div`
+  display: flex;
+  align-items: center;
   margin: 0.5em 0;
 `;
 
